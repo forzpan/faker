@@ -4,17 +4,18 @@ import (
 	"fmt"
 	"math/rand"
 	"strconv"
+	"time"
 )
 
 // TimeMatrix 时间母体
 type TimeMatrix struct {
-	min uint       //最小时间
-	max uint       //最大时间
+	min time.Time  //最小时间
+	max time.Time  //最大时间
 	rnd *rand.Rand //随机数
 }
 
 // NewTimeMatrix 构造一个 TimeMatrix
-func NewTimeMatrix(min, max uint，fmt string) (*TimeMatrix, error) {
+func NewTimeMatrix(min, max time.Time, fmtstr string) (*TimeMatrix, error) {
 	if min > max {
 		return nil, fmt.Errorf("min[%d] > max[%d]，请反转它们！", min, max)
 	}
@@ -29,7 +30,8 @@ func NewTimeMatrix(min, max uint，fmt string) (*TimeMatrix, error) {
 }
 
 func (m *TimeMatrix) breed() int {
-	return m.min + m.rnd.Intn(m.max-m.min+1)
+	d := m.max.Sub(m.min)
+	return m.min + m.rnd.Intn(mad)
 }
 
 // Breed 实现接口matrix

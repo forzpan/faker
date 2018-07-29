@@ -23,9 +23,8 @@ func NewCompositeMatrix(ms ...Matrix) *CompositeMatrix {
 }
 
 // Add 往CompositeMatrix里增加Matrix
-func (m *CompositeMatrix) Add(fm Matrix, ms ...Matrix) {
-	m.matrixs = append(m.matrixs, fm)
-	if ms != nil {
+func (m *CompositeMatrix) Add(ms ...Matrix) {
+	if len(ms) > 0 {
 		m.matrixs = append(m.matrixs, ms...)
 	}
 }
