@@ -1,7 +1,7 @@
 package faker
 
 import (
-	"fmt"
+	"errors"
 	"strings"
 )
 
@@ -12,9 +12,8 @@ type ConstantMatrix struct {
 
 // NewConstantMatrix 构造一个 ConstantMatrix
 func NewConstantMatrix(val string) (*ConstantMatrix, error) {
-	dchars := delimiter()
-	if strings.ContainsAny(val, dchars) {
-		return nil, fmt.Errorf("数据中不允许包含定界符号集[%s]中的字符，请检查！", dchars)
+	if strings.ContainsAny(val, Delimiter()) {
+		return nil, errors.New("不能包含分隔符和换行符")
 	}
 	return &ConstantMatrix{val}, nil
 }

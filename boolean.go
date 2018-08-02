@@ -1,9 +1,11 @@
 package faker
 
 // BoolMatrix 布尔母体
-type BoolMatrix = CompositeMatrix
+type BoolMatrix = EnumMatrix
 
 // NewBoolMatrix 构造一个 BoolMatrix
 func NewBoolMatrix() *BoolMatrix {
-	return NewCompositeMatrix(&ConstantMatrix{"true"}, &ConstantMatrix{"false"})
+	vals := []string{"true", "false"}
+	matrix, _ := NewEnumMatrix(vals)
+	return matrix
 }
